@@ -1,2 +1,3 @@
-# projeto-shapex
-Site de pedidos online com WhatsApp
+# Projeto de Pedidos Shapex Suplementos
+
+Site de pedidos online com WhatsApp para a loja de suplemento Shapex Suplementos.
