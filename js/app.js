@@ -17,12 +17,15 @@ produtos.metodos = {
     // obtem a lista de itens dos produtos
     obterItensProdutos: () => {
 
-        var filtro = MENU['burgers'];
+        var filtro = MENU['proteina'];
         console.log(filtro)
 
         $.each(filtro, (i, e) => {
 
-            let temp = produtos.tamplates.item;
+            let temp = produtos.templates.item.replace(/\${img}/g, e.img)
+            .replace(/\${nome}/g, e.name)
+            .replace(/\${preco}/g, e.price.toFixed(2).replace('.', ','))
+
             $("#itensProdutos").append(temp)
 
         })
@@ -30,19 +33,19 @@ produtos.metodos = {
 
 }
 
-produtos.tamplates = {
+produtos.templates = {
 
     item: `
         <div class="col-3 mb-5">
             <div class="card card-item">
                 <div class="img-produto">
-                    <img src="img/produtos/proteina/w100_morango.jpg">
+                    <img src="\${img}" />
                 </div>
                 <p class="title-produto text-center mt-4">
-                    <b>W100 Nutrata 900g Morango</b>
+                    <b>\${nome}</b>
                 </p>
                 <p class="price-produto text-center">
-                    <b>R$ 119,99</b>
+                    <b>R$ \${preco}</b>
                 </p>
                 <div class="add-carrinho">  
                     <span class="btn-menos"><i class="fas fa-minus"></i></span>
