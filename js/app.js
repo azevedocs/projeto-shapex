@@ -4,6 +4,8 @@ $(document).ready(function () {
 
 var produtos = {};
 
+var MEU_CARRINHO = {};
+
 produtos.eventos = {
 
     init: () => {
@@ -79,7 +81,27 @@ produtos.metodos = {
 
         let qntdAtual = parseInt($("#qntd-" + id).text());
         $("#qntd-" + id).text(qntdAtual + 1)
-    }
+    },
+
+    // adicionar ao carrinho o item do produtos
+    adicionarAoCarrinho: (id) => {
+
+        let qntdAtual = parseInt($("#qntd-" + id).text());
+
+        if (qntdAtual > 0) {
+
+            // obter a categoria ativa
+            var categoria = $(".container-menu a.active").attr('id').split('menu-')[1];
+
+            // obter a lista de itens
+            let filtro = MENU [categoria];
+
+            // obtem o item
+            let item = $.grep(filtro, (e,i) => {return e.id == id});
+
+        }
+
+    },
 
 }
 
@@ -101,7 +123,7 @@ produtos.templates = {
                     <span class="btn-menos" onclick="produtos.metodos.diminuirQuantidade('\${id}')"><i class="fas fa-minus"></i></span>
                     <span class="add-numero-itens" id="qntd-\${id}">0</span>
                     <span class="btn-mais" onclick="produtos.metodos.aumentarQuantidade('\${id}')"><i class="fas fa-plus"></i></span>
-                    <span class="btn btn-add"><i class="fa fa-shopping-bag"></i></span>
+                    <span class="btn btn-add onclick="produtos.metodos.adicionarAoCarrinho('\${id}')"><i class="fa fa-shopping-bag"></i></span>
                 </div>
             </div>
         </div>
