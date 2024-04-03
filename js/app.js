@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 var produtos = {};
 
-var MEU_CARRINHO = {};
+var MEU_CARRINHO = [];
 
 produtos.eventos = {
 
@@ -70,7 +70,6 @@ produtos.metodos = {
         let qntdAtual = parseInt($("#qntd-" + id).text());
 
         if (qntdAtual > 0) {
-
             $("#qntd-" + id).text(qntdAtual - 1)
         }
 
@@ -94,10 +93,32 @@ produtos.metodos = {
             var categoria = $(".container-menu a.active").attr('id').split('menu-')[1];
 
             // obter a lista de itens
-            let filtro = MENU [categoria];
+            let filtro = MENU[categoria];
 
             // obtem o item
             let item = $.grep(filtro, (e,i) => {return e.id == id});
+
+            if (item.length > 0) {
+
+                //validar se ja existe esse item no carrinho
+                let existe = $.grep(MEU_CARRINHO, (elem,index) => {return elem.id == id});
+
+                // caso ja exista o item no carrinho, só altera a quantidade
+                if (existe.length > 0) {
+                    let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id));
+                    MEU_CARRINHO[objIndex].qntd = MEU_CARRINHO[objIndex].qntd + qntdAtual;
+                }
+                // caso ainda não exista o item no carrinho, adiciona ele
+                else {
+                    item[0].qntd = qntdAtual;
+                    MEU_CARRINHO.push(item[0])
+                }
+
+                
+                $("#qntd-" + id).text(0);
+
+
+            }
 
         }
 
@@ -123,7 +144,7 @@ produtos.templates = {
                     <span class="btn-menos" onclick="produtos.metodos.diminuirQuantidade('\${id}')"><i class="fas fa-minus"></i></span>
                     <span class="add-numero-itens" id="qntd-\${id}">0</span>
                     <span class="btn-mais" onclick="produtos.metodos.aumentarQuantidade('\${id}')"><i class="fas fa-plus"></i></span>
-                    <span class="btn btn-add onclick="produtos.metodos.adicionarAoCarrinho('\${id}')"><i class="fa fa-shopping-bag"></i></span>
+                    <span class="btn btn-add" onclick="produtos.metodos.adicionarAoCarrinho('\${id}')"><i class="fa fa-shopping-bag"></i></span>
                 </div>
             </div>
         </div>

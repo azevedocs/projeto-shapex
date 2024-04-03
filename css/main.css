@@ -730,3 +730,22 @@ select.form-control {
 .cidade-endereco {
     margin-bottom: 0;
 }
+
+.badge-total-carrinho {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    background-color: var(--color-secundary);
+    border-radius: 50px;
+    right: -5px;
+    top: -5px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-carrinho {
+    
+}
