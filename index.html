@@ -439,7 +439,7 @@
 
                         <div class="col-12 item-carrinho">
                             <div class="img-produto">
-                                <img src="img/produtos/proteina/w100_morango.jpg">
+                                <img src="img/produtos/proteinas/w100_morango.jpg">
                             </div>
                             <div class="dados-produto">
                                 <p class="title-produto"><b>W100 Nutrata 900g Morango</b></p>
@@ -540,55 +540,57 @@
 
                     </div>
 
-                    <div id="resumoCarrinho" class="row mr-0 ml-0">
+                    <div id="resumoCarrinho" class="row mr-0 ml-0 hidden">
                         <div class="col-12">
                             <p class="title-carrinho mt-4">
                                 <b>Itens do pedido:</b>
                             </p>
                         </div>
-                    </div>
+                    
 
-                    <diV class="col-12">
-                        <div class="row" id="listaItensResumo">
-                            
-                            <div class="col-12 item-carrinho resumo">
-                                <div class="img-produto-resumo">
-                                    <img src="img/produtos/proteina/w100_morango.jpg">
-                                </div>
-                                <div class="dados-produto">
-                                    <p class="title-produto-resumo">
-                                        <b>W100 Nutrata 900g Morango</b>
+                        <diV class="col-12">
+                            <div class="row" id="listaItensResumo">
+                                
+                                <div class="col-12 item-carrinho resumo">
+                                    <div class="img-produto-resumo">
+                                        <img src="img/produtos/proteinas/w100_morango.jpg">
+                                    </div>
+                                    <div class="dados-produto">
+                                        <p class="title-produto-resumo">
+                                            <b>W100 Nutrata 900g Morango</b>
+                                        </p>
+                                        <p class="price-produto-resumo">
+                                            <b> R$ 119,99</b>
+                                        </p>
+                                    </div>
+                                    <p class="quantidade-produto-resumo">
+                                        x <b>3</b>
                                     </p>
-                                    <p class="price-produto-resumo">
-                                        <b> R$ 119,99</b>
-                                    </p>
                                 </div>
-                                <p class="quantidade-produto-resumo">
-                                    x <b>3</b>
+
+                            </div>
+                        </diV>
+
+                        <div class="col-12">
+                            <p class="title-carrinho mt-4">
+                                <b>Local da entrega:</b>
+                            </p>
+                        </div>
+
+                        <div class="col-12 item-carrinho resumo">
+                            <div class="img-map">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div class="dados-produto">
+                                <p class="texto-endereco">
+                                    <b id="resumoEndereco">Av Prof Pinto de Aguiar, 324-B, Pituaçu</b>
+                                </p>
+                                <p class="cidade-endereco" id="cidadeEndereco">
+                                    Salvador-BA / 41740-090
                                 </p>
                             </div>
-
                         </div>
-                    </diV>
 
-                    <div class="col-12">
-                        <p class="title-carrinho mt-4">
-                            <b>Local da entrega:</b>
-                        </p>
-                    </div>
-
-                    <div class="col-12 item-carrinho resumo">
-                        <div class="img-map">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <div class="dados-produto">
-                            <p class="texto-endereco">
-                                <b id="resumoEndereco">Av Prof Pinto de Aguiar, 324-B, Pituaçu</b>
-                            </p>
-                            <p class="cidade-endereco" id="cidadeEndereco">
-                                Salvador-BA / 41740-090
-                            </p>
-                        </div>
                     </div>
 
                 </div>
@@ -611,16 +613,16 @@
                         </p>
                     </div>
 
-                    <a class="btn btn-yellow float-right" id="btnEtapaPedido">
+                    <a onclick="produtos.metodos.carregarEtapa(2)" class="btn btn-yellow float-right" id="btnEtapaPedido">
                         Continuar
                     </a>
-                    <a class="btn btn-yellow float-right hidden" id="btnEtapaEndereco">
+                    <a onclick="produtos.metodos.carregarEtapa(3)" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco">
                         Revisar Pedido
                     </a>
                     <a class="btn btn-yellow float-right hidden" id="btnEtapaResumo">
                         Enviar Pedido
                     </a>
-                    <a class="btn btn-white float-right mr-3 hidden" id="btnVoltar">
+                    <a onclick="produtos.metodos.voltarEtapa()" class="btn btn-white float-right mr-3 hidden" id="btnVoltar">
                         Voltar
                     </a>
 
