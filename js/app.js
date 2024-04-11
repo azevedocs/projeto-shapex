@@ -152,7 +152,7 @@ produtos.metodos = {
 
         if(abrir) {
             $("#modalCarrinho").removeClass('hidden');
-            produtos.metodos.carregarEtapa(1);
+            produtos.metodos.carregarCarrinho();
         }
         else {
             $("#modalCarrinho").addClass('hidden');
@@ -221,13 +221,24 @@ produtos.metodos = {
 
     },
 
+    // carrega a lista de itens do carrinho
+    carregarCarrinho: () => {
 
+        produtos.metodos.carregarEtapa(1);
 
+    },
 
+    diminuirQuantidadeCarrinho: (id) => {
 
+    },
 
+    aumentarQuantidadeCarrinho: (id) => {
 
+    },
 
+    removerItemCarrinho: () => {
+
+    },
 
 
     //Mensagens
@@ -271,6 +282,24 @@ produtos.templates = {
                     <span class="btn-mais" onclick="produtos.metodos.aumentarQuantidade('\${id}')"><i class="fas fa-plus"></i></span>
                     <span class="btn btn-add" onclick="produtos.metodos.adicionarAoCarrinho('\${id}')"><i class="fa fa-shopping-bag"></i></span>
                 </div>
+            </div>
+        </div>
+    `,
+
+    itemCarrinho: `
+        <div class="col-12 item-carrinho">
+            <div class="img-produto">
+                <img src="\${img}">
+            </div>
+            <div class="dados-produto">
+                <p class="title-produto"><b>\${nome}</b></p>
+                <p class="price-produto"><b>R$ \${preco}</b></p>
+            </div>
+            <div class="add-carrinho">  
+                <span class="btn-menos" onclick="produtos.metodos.diminuirQuantidadeCarrinho('\${id}')"><i class="fas fa-minus"></i></span>
+                <span class="add-numero-itens" id="qntd-carrinho-\${id}">0</span>
+                <span class="btn-mais" onclick="produtos.metodos.aumentarQuantidadeCarrinho('\${id}')"><i class="fas fa-plus"></i></span>
+                <span class="btn btn-remove" onclick="produtos.metodos.removerItemCarrinho('\${id}')"><i class="fa fa-times"></i></span>
             </div>
         </div>
     `
