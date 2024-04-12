@@ -226,6 +226,27 @@ produtos.metodos = {
 
         produtos.metodos.carregarEtapa(1);
 
+        if (MEU_CARRINHO.length > 0) {
+
+            $("#itensCarrinho").html('');
+            
+            $.each(MEU_CARRINHO, (i, e) => {
+
+                let temp = produtos.templates.itemCarrinho.replace(/\${img}/g, e.img)
+                .replace(/\${nome}/g, e.name)
+                .replace(/\${preco}/g, e.price.toFixed(2).replace('.', ','))
+                .replace(/\${id}/g, e.id)
+                .replace(/\${qntd}/g, e.qntd)
+
+                $("#itensCarrinho").append(temp);
+
+            })
+
+        }
+        else {
+
+        }
+
     },
 
     diminuirQuantidadeCarrinho: (id) => {
@@ -289,7 +310,7 @@ produtos.templates = {
     itemCarrinho: `
         <div class="col-12 item-carrinho">
             <div class="img-produto">
-                <img src="\${img}">
+                <img src="\${img}"/>
             </div>
             <div class="dados-produto">
                 <p class="title-produto"><b>\${nome}</b></p>
@@ -297,7 +318,7 @@ produtos.templates = {
             </div>
             <div class="add-carrinho">  
                 <span class="btn-menos" onclick="produtos.metodos.diminuirQuantidadeCarrinho('\${id}')"><i class="fas fa-minus"></i></span>
-                <span class="add-numero-itens" id="qntd-carrinho-\${id}">0</span>
+                <span class="add-numero-itens" id="qntd-carrinho-\${id}">\${qntd}</span>
                 <span class="btn-mais" onclick="produtos.metodos.aumentarQuantidadeCarrinho('\${id}')"><i class="fas fa-plus"></i></span>
                 <span class="btn btn-remove" onclick="produtos.metodos.removerItemCarrinho('\${id}')"><i class="fa fa-times"></i></span>
             </div>
