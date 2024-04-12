@@ -244,22 +244,59 @@ produtos.metodos = {
 
         }
         else {
-
+            $("#itensCarrinho").html('<p class="carrinho-vazio"><i class="fa fa-shopping-bag"></i> Seu carrinho está vazio</p>');
         }
 
     },
 
+    // diminuir quantidade do item no carrinho
     diminuirQuantidadeCarrinho: (id) => {
 
+        let qntdAtual = parseInt($("#qntd-carrinho-" + id).text());
+
+        if (qntdAtual > 1) {
+            $("#qntd-carrinho-" + id).text(qntdAtual - 1)
+            produtos.metodos.atualizarCarrinho(id, qntdAtual - 1);
+        }
+        else {
+            produtos.metodos.removerItemCarrinho(id);
+        }
+
     },
 
+    // aumentar quantidade do item no carrinho
     aumentarQuantidadeCarrinho: (id) => {
 
+        let qntdAtual = parseInt($("#qntd-carrinho-" + id).text());
+        $("#qntd-carrinho-" + id).text(qntdAtual + 1)
+        produtos.metodos.atualizarCarrinho(id, qntdAtual + 1);
+
+
+    },
+ 
+    // botão de remover item do carrinha
+    removerItemCarrinho: (id) => {
+
+        MEU_CARRINHO = $.grep(MEU_CARRINHO, (e, i) => { return e.id != id });
+        produtos.metodos.carregarCarrinho();
+        
+        //atualiza o botão carrinho com a quantidade atualizada
+        produtos.metodos.atualizarBadgeTotal();
+
     },
 
-    removerItemCarrinho: () => {
+    //atualiza o carrinho com a quantidade atual
+    atualizarCarrinho: (id, qntd) => {
 
+        let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id));
+        MEU_CARRINHO[objIndex].qntd = qntd;
+
+        //atualiza o botão carrinho com a quantidade atualizada
+        produtos.metodos.atualizarBadgeTotal();
     },
+
+
+
 
 
     //Mensagens
