@@ -5,6 +5,10 @@ $(document).ready(function () {
 var produtos = {};
 
 var MEU_CARRINHO = [];
+var MEU_ENDERECO = null;
+
+var VALOR_CARRINHO = 0;
+var VALOR_ENTREGA = 10;
 
 produtos.eventos = {
 
@@ -240,11 +244,17 @@ produtos.metodos = {
 
                 $("#itensCarrinho").append(temp);
 
+                //ultimo item
+                if ((i + 1) == MEU_CARRINHO.length) {
+                    produtos.metodos.carregarValores();
+                }
+
             })
 
         }
         else {
             $("#itensCarrinho").html('<p class="carrinho-vazio"><i class="fa fa-shopping-bag"></i> Seu carrinho está vazio</p>');
+            produtos.metodos.carregarValores();
         }
 
     },
@@ -293,9 +303,151 @@ produtos.metodos = {
 
         //atualiza o botão carrinho com a quantidade atualizada
         produtos.metodos.atualizarBadgeTotal();
+
+        // atualiza os valores (R$) totais do carrinho
+        produtos.metodos.carregarValores();
+
     },
 
+    //carrega os valores de Subtotal, entrega e total
+    carregarValores: () => {
 
+        VALOR_CARRINHO = 0;
+
+        $("#lblSubtotal").text('R$ 0,00');
+        $("#lblValorEntrega").text('+ R$ 0,00');
+        $("#lblValorTotal").text('R$ 0,00');
+
+        $.each(MEU_CARRINHO, (i, e) => {
+
+            VALOR_CARRINHO += parseFloat(e.price * e.qntd);
+
+            if ((i + 1) == MEU_CARRINHO.length) {
+                $("#lblSubtotal").text(`R$ ${VALOR_CARRINHO.toFixed(2).replace('.', ',')}`);
+                $("#lblValorEntrega").text(`+ R$ ${VALOR_ENTREGA.toFixed(2).replace('.', ',')}`);
+                $("#lblValorTotal").text(`R$ ${(VALOR_CARRINHO + VALOR_ENTREGA).toFixed(2).replace('.', ',')}`);
+            }
+
+        })
+    },
+
+    //carregar a etapa endereços
+    carregarEndereco: () => {
+
+        if(MEU_CARRINHO.length <= 0) {
+            produtos.metodos.mensagem('Seu carrinho está vazio')
+            return;
+        }
+
+        produtos.metodos.carregarEtapa(2);
+
+    },
+
+    buscarCep: () => {
+
+        // cria a variavel com o valor do cep
+        var cep = $("#txtCEP").val().trim().replace(/\D/g, '');
+
+        // verifica se o cep possui valor informado
+        if (cep != "") {
+
+            // espressão regular para validar o cep
+            var validacep = /^[0-9]{8}/;
+
+            if (validacep.test(cep)) {
+
+                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                    if (!("erro" in dados)) {
+
+                        // atualizar os campos com os valores retornados
+                        $("#txtEndereco").val(dados.logradouro);
+                        $("#txtBairro").val(dados.bairro);
+                        $("#txtCidade").val(dados.localidade);
+                        $("#ddlUf").val(dados.uf);
+                        $("#txtNumero").focus();
+                    }
+                    else {
+                        produtos.metodos.mensagem('CEP não encontrado. Preencha as informações manualmente');
+                        $("#txtEndereco").focus();
+                    }
+
+                })
+
+            }
+            else {
+                produtos.metodos.mensagem('Formato do CEP inválido');
+                $("#txtCEP").focus();
+            }
+
+        }
+        else {
+            produtos.metodos.mensagem('Informe o CEP, por favor');
+            $("#txtCEP").focus();
+        }
+
+    },
+
+    // validação antes de proseguir para etapa 3
+    resumoPedido: () => {
+        
+        let cep = $("#txtCEP").val().trim();
+        let endereco = $("#txtEndereco").val().trim();
+        let bairro = $("#txtBairro").val().trim();
+        let cidade = $("#txtCidade").val().trim();
+        let uf = $("#ddlUf").val().trim();
+        let numero = $("#txtNumero").val().trim();
+        let complemento = $("#txtComplemento").val().trim();
+
+        if (cep.length <= 0) {
+            produtos.metodos.mensagem('Informe o CEP, por favor');
+            $("#txtCEP").focus();
+            return;
+        }
+
+        if (endereco.length <= 0) {
+            produtos.metodos.mensagem('Informe o Endereco, por favor');
+            $("#txtEndereco").focus();
+            return;
+        }
+
+        if (bairro.length <= 0) {
+            produtos.metodos.mensagem('Informe o Bairro, por favor');
+            $("#txtBairro").focus();
+            return;
+        }
+
+        if (cidade.length <= 0) {
+            produtos.metodos.mensagem('Informe o Cidade, por favor');
+            $("#txtCidade").focus();
+            return;
+        }
+
+        if (uf == "-1") {
+            produtos.metodos.mensagem('Informe o UF, por favor');
+            $("#ddlUf").focus();
+            return;
+        }
+
+        if (numero.length <= 0) {
+            produtos.metodos.mensagem('Informe o Numero, por favor');
+            $("#txtNumero").focus();
+            return;
+        }
+  
+        MEU_ENDERECO = {
+            cep: cep,
+            endereco: endereco,
+            bairro: bairro,
+            cidade: cidade,
+            uf: uf,
+            numero: numero,
+            complemento: complemento,
+        }
+
+        produtos.metodos.carregarEtapa(3);
+
+    },
 
 
 

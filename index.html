@@ -445,7 +445,9 @@
                             <div class="form-group container-cep">
                                 <label>CEP:</label>
                                 <input id="txtCEP" type="text" class="form-control"/>
-                                <a class="btn btn-yellow btn-sm"><i class="fa fa-search"></i></a>
+                                <a class="btn btn-yellow btn-sm" onclick="produtos.metodos.buscarCep()">
+                                    <i class="fa fa-search"></i>
+                                </a>
                             </div>
                         </div>
 
@@ -489,7 +491,7 @@
                         <div class="col-2"> 
                             <div class="form-group">
                                 <label>UF:</label>
-                                <select id="ddluf" class="form-control">
+                                <select id="ddlUf" class="form-control">
                                     <option value="-1">...</option>
                                     <option value="AC">AC</option>
                                     <option value="AL">AL</option>
@@ -589,18 +591,18 @@
                         </p>
                         <p class="mb-0 texto-entrega">
                             <span> <i class="fas fa-motorcycle"></i> Entrega:</span>
-                            <span id="lblValorEntrega">+ R$ 10,00</span>
+                            <span id="lblValorEntrega">+ R$ 0,00</span>
                         </p>
                         <p class="mb-0 texto-total">
                             <span><b>Total:</b></span>
-                            <span class="valor-total" id="lblValortotal"><b>R$ 10,00</b></span>
+                            <span class="valor-total"><b id="lblValorTotal">R$ 0,00</b></span>
                         </p>
                     </div>
 
-                    <a onclick="produtos.metodos.carregarEtapa(2)" class="btn btn-yellow float-right" id="btnEtapaPedido">
+                    <a onclick="produtos.metodos.carregarEndereco()" class="btn btn-yellow float-right" id="btnEtapaPedido">
                         Continuar
                     </a>
-                    <a onclick="produtos.metodos.carregarEtapa(3)" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco">
+                    <a onclick="produtos.metodos.resumoPedido(0)" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco">
                         Revisar Pedido
                     </a>
                     <a class="btn btn-yellow float-right hidden" id="btnEtapaResumo">

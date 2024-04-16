@@ -507,7 +507,7 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 50px;
+    padding: 30px;
     background:  var(--color-white);
     z-index: 9990;
     overflow-x: hidden;
