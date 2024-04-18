@@ -375,17 +375,17 @@ b {
 }
 
 #avaliacao-1 .imagem-avaliacao {
-    background-image: url(/img/jullia.jpg);
+    background-image: url(./img/jullia.jpg);
     background-size: cover;
 }
 
 #avaliacao-2 .imagem-avaliacao {
-    background-image: url(/img/malu.jpg);
+    background-image: url(./img/malu.jpg);
     background-size: cover;
 }
 
 #avaliacao-3 .imagem-avaliacao {
-    background-image: url(/img/gabriel.jpg);
+    background-image: url(./img/gabriel.jpg);
     background-size: cover;
 }
 
