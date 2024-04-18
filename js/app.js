@@ -10,14 +10,19 @@ var MEU_ENDERECO = null;
 var VALOR_CARRINHO = 0;
 var VALOR_ENTREGA = 10;
 
+var CELULAR_EMPRESA = '5575992494017';
+
+//EVENTOS
 produtos.eventos = {
 
     init: () => {
         produtos.metodos.obterItensProdutos();
+        produtos.metodos.carregarBotaoLigar();
     }
 
 }
 
+//METODOS
 produtos.metodos = {
 
     // obtem a lista de itens dos produtos
@@ -468,9 +473,70 @@ produtos.metodos = {
 
         $("#resumoEndereco").html(`${MEU_ENDERECO.endereco}, ${MEU_ENDERECO.numero}, ${MEU_ENDERECO.bairro}`);
         $("#cidadeEndereco").html(`${MEU_ENDERECO.cidade}-${MEU_ENDERECO.uf} / ${MEU_ENDERECO.cep} / ${MEU_ENDERECO.complemento}`);
+
+        produtos.metodos.finalizarPedido();
+
     },
 
+    // atualiza o link do botão do whatsapp
+    finalizarPedido: () => {
 
+        if (MEU_CARRINHO.length > 0 && MEU_ENDERECO != null) {
+
+            var texto = 'Olá gostaria de fazer um pedido:\n';
+            texto += `\n*ITENS DO PEDIDO:*\n\${itens}`;
+            texto += '\n*ENDEREÇO DE NETREGA:*'
+            texto += `\n${MEU_ENDERECO.endereco}, ${MEU_ENDERECO.numero}, ${MEU_ENDERECO.bairro}`;
+            texto += `\n${MEU_ENDERECO.cidade}-${MEU_ENDERECO.uf}, / ${MEU_ENDERECO.cep} / ${MEU_ENDERECO.complemento}`;
+            texto += `\n\n*TOTAL (COM R$10,00 ENTREGA): R$ ${(VALOR_CARRINHO + VALOR_ENTREGA).toFixed(2).replace('.', ',')}*`
+
+            var itens = '';
+
+            $.each(MEU_CARRINHO, (i, e) => {
+
+                itens += `*${e.qntd}x* ${e.name} ....... R$ ${e.price.toFixed(2).replace('.', ',')} \n`
+
+                // ultimo item
+                if ((i + 1) == MEU_CARRINHO.length) {
+
+                    texto = texto.replace(/\${itens}/g, itens);
+
+                    //coverte a url
+                    let encode = encodeURI(texto);
+                    let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
+
+                    $("#btnEtapaResumo").attr('href', URL);
+
+                }
+            
+            })
+
+        }
+
+    },
+
+    //carrega o botão de ligar
+    carregarBotaoLigar: () => {
+
+        $("#btnLigar").attr('href', `tel:${CELULAR_EMPRESA}`);
+
+    },
+
+    // abre as avaliações
+    abrirAvaliacoes: (avaliacao) => {
+
+        $("#avaliacao-1").addClass('hidden');
+        $("#avaliacao-2").addClass('hidden');
+        $("#avaliacao-3").addClass('hidden');
+
+        $("#btnAvaliacao-1").removeClass('active');
+        $("#btnAvaliacao-2").removeClass('active');
+        $("#btnAvaliacao-3").removeClass('active');
+
+        $("#avaliacao-" + avaliacao).removeClass('hidden');
+        $("#btnAvaliacao-" + avaliacao).addClass('active');
+
+    },
 
     //Mensagens
     mensagem: (texto, cor = 'red', tempo = 3500) => {
@@ -493,6 +559,7 @@ produtos.metodos = {
 
 }
 
+//TEMPLATES
 produtos.templates = {
 
     item: `

@@ -69,10 +69,10 @@
                                 Aproveite nossos produtos! Escolha o que desejar e receba em sua casa de forma rápida e segura.
                             </p>
                             <div>
-                                <a class="btn btn-yellow mt-4 mr-3">
+                                <a href="#produtos" class="btn btn-yellow mt-4 mr-3">
                                     Ver produtos
                                 </a>
-                                <a href="#" class="btn btn-white btn-icon-left mt-4">
+                                <a href="#" class="btn btn-white btn-icon-left mt-4" id="btnLigar">
                                     <span class="icon-left">
                                         <i class="fa fa-phone"></i>
                                     </span>
@@ -80,14 +80,17 @@
                                 </a>
                             </div>
                         </div>
-                        <a class="btn btn-sm btn-white btn-social mt-4 mr-3" href="https://www.instagram.com/shapexsuplementos/">
+                        <a href="https://www.instagram.com/shapexsuplementos/" target="_blank" class="btn btn-sm btn-white btn-social mt-4 mr-3" >
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a class="btn btn-sm btn-white btn-social mt-4 mr-3" href="https://www.facebook.com/shapexssa?locale=pt_BR">
+                        <a href="https://www.facebook.com/shapexssa?locale=pt_BR" target="_blank" class="btn btn-sm btn-white btn-social mt-4 mr-3" >
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a class="btn btn-sm btn-white btn-social mt-4" href="https://api.whatsapp.com/send?phone=5571991611827">
+                        <a href="https://api.whatsapp.com/send?phone=5571991611827" target="_blank" class="btn btn-sm btn-white btn-social mt-4 mr-3" >
                             <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://ul.waze.com/ul?preview_venue_id=210699910.2107195707.440857&navigate=yes&utm_campaign=waze_website&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" class="btn btn-sm btn-white btn-social mt-4" >
+                            <i class="fab fa-waze"></i>
                         </a>
                     </div>
                     <div class="col-6">
@@ -180,7 +183,7 @@
                         <a id="menu-proteinas" class="btn btn-white btn-sm mr-3 active" onclick="produtos.metodos.obterItensProdutos('proteinas')">
                             <i class="fas fa-utensil-spoon"></i>&nbsp; Proteínas
                         </a>
-                        <a id="#menu-creatinas" class="btn btn-white btn-sm mr-3" onclick="produtos.metodos.obterItensProdutos('creatinas')">
+                        <a id="menu-creatinas" class="btn btn-white btn-sm mr-3" onclick="produtos.metodos.obterItensProdutos('creatinas')">
                             <i class="fas fa-viruses"></i>&nbsp; Creatinas
                         </a>
                         <a id="menu-pretreinos" class="btn btn-white btn-sm mr-3" onclick="produtos.metodos.obterItensProdutos('pretreinos')">
@@ -234,7 +237,7 @@
                         </h1>
                         <div class="mb-5">
                             
-                            <div class="avaliacao hidden" id="avaliacao-1">
+                            <div class="avaliacao" id="avaliacao-1">
                                 <div class="container-dados-avaliacao">
                                     <div class="imagem-avaliacao"></div>
                                     <div>
@@ -258,7 +261,7 @@
                                 </p>
                             </div>
 
-                            <div class="avaliacao" id="avaliacao-2">
+                            <div class="avaliacao hidden" id="avaliacao-2">
                                 <div class="container-dados-avaliacao">
                                     <div class="imagem-avaliacao"></div>
                                     <div>
@@ -307,9 +310,9 @@
                             </div>
                         </div>
 
-                        <a class="btn btn-sm btn-white btn-social mr-3 active">1</a>
-                        <a class="btn btn-sm btn-white btn-social mr-3">2</a>
-                        <a class="btn btn-sm btn-white btn-social">3</a>
+                        <a id="btnAvaliacao-1" class="btn btn-sm btn-white btn-social mr-3 active" onclick="produtos.metodos.abrirAvaliacoes(1)">1</a>
+                        <a id="btnAvaliacao-2" class="btn btn-sm btn-white btn-social mr-3" onclick="produtos.metodos.abrirAvaliacoes(2)">2</a>
+                        <a id="btnAvaliacao-3" class="btn btn-sm btn-white btn-social" onclick="produtos.metodos.abrirAvaliacoes(3)">3</a>
 
                     </div>
                     
@@ -398,14 +401,17 @@
                         </p>
                     </div>
                     <div class="col-3 container-redes-footer">
-                        <a class="btn btn-sm btn-white btn-social mr-3" href="https://www.instagram.com/shapexsuplementos/">
+                        <a href="https://www.instagram.com/shapexsuplementos/" target="_blank" class="btn btn-sm btn-white btn-social mt-4 mr-3" >
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a class="btn btn-sm btn-white btn-social mr-3" href="https://www.facebook.com/shapexssa?locale=pt_BR">
+                        <a href="https://www.facebook.com/shapexssa?locale=pt_BR" target="_blank" class="btn btn-sm btn-white btn-social mt-4 mr-3" >
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a class="btn btn-sm btn-white btn-social" href="https://api.whatsapp.com/send?phone=5571991611827">
+                        <a href="https://api.whatsapp.com/send?phone=5571991611827" target="_blank" class="btn btn-sm btn-white btn-social  mt-4 mr-3" >
                             <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://ul.waze.com/ul?preview_venue_id=210699910.2107195707.440857&navigate=yes&utm_campaign=waze_website&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" class="btn btn-sm btn-white btn-social mt-4" >
+                            <i class="fab fa-waze"></i>
                         </a>
                     </div>
                     
@@ -586,7 +592,7 @@
                     <a onclick="produtos.metodos.resumoPedido(0)" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco">
                         Revisar Pedido
                     </a>
-                    <a class="btn btn-yellow float-right hidden" id="btnEtapaResumo">
+                    <a href="#" class="btn btn-yellow float-right hidden" id="btnEtapaResumo" target="_blank">
                         Enviar Pedido
                     </a>
                     <a onclick="produtos.metodos.voltarEtapa()" class="btn btn-white float-right mr-3 hidden" id="btnVoltar">
