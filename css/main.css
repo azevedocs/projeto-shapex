@@ -246,7 +246,7 @@ b {
     left: 0;
     right: 0;
     height: 500px;
-    background-image: url(/img/bg-icons-1.png);
+    background-image: url(../img/bg-icons-1.png);
 }
 
 .container-menu {
