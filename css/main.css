@@ -161,8 +161,7 @@ b {
 }
 
 .img-banner img {
-    position: absolute;
-    
+    width: 100%;
 }
 
 .card {
@@ -190,7 +189,7 @@ b {
 }
 
 .servicos {
-    padding-top: 100px;
+    padding-top: 150px;
     padding-bottom: 150px;
 }
 
@@ -342,7 +341,7 @@ b {
 
 .avaliacoes {
     padding-top: 100px;
-    padding-bottom: 150px;   
+    padding-bottom: 100px;   
 }
 
 .background-avaliacoes {
@@ -428,8 +427,8 @@ b {
 }
 
 .lojas {
-    padding-top: 50px;
-    padding-bottom: 150px;
+    padding-top: 75px;
+    padding-bottom: 100px;
 }
 
 .background-lojas {
@@ -443,7 +442,7 @@ b {
 .card-secondary {
     background-color: var(--color-rosa);
     border-radius: 70px;
-    padding: 70px 90px;
+    padding: 50px 90px;
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1)!important;
 }
 
@@ -474,6 +473,7 @@ b {
 
 .maps {
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1)!important;
+    width: 10px;
 }
 
 footer {
@@ -481,7 +481,7 @@ footer {
 }
 
 .logo-footer {
-    width: 150px;
+    width: 180px;
 }
 
 .container-logo-footer, .container-texto-footer, .container-redes-footer {
